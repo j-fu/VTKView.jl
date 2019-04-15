@@ -1,0 +1,7 @@
+name = "VTKFig"
+uuid = "955f2c64-5fd0-11e9-0ad0-3332e913311a"
+authors = ["Juergen Fuhrmann <juergen.fuhrmann@wias-berlin.de>"]
+version = "0.1.0"
+
+[deps]
+Libdl = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
