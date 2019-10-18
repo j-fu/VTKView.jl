@@ -129,24 +129,33 @@ destruct!(this::XYPlot)=ccall( ("vtkfigDestroyXYPlot",libvtkfig), Cvoid, (Ptr{Cv
 ###########################################################################
 
 interact(this::Frame)=ccall(("vtkfigInteract",libvtkfig),Cvoid,(Ptr{Cvoid},),this.cobj)
+
 show(this::Frame)=ccall(("vtkfigShow",libvtkfig),Cvoid,(Ptr{Cvoid},),this.cobj)
+
 clear(this::Frame)=ccall(("vtkfigClearFrame",libvtkfig),Cvoid,(Ptr{Cvoid},),this.cobj)
 
 add_figure(this::Frame, fig::ScalarView)=ccall(("vtkfigAddScalarView",libvtkfig), Cvoid, (Ptr{Cvoid},Ptr{Cvoid}),this.cobj,fig.cobj)
+
 add_figure(this::Frame, fig::ScalarView, pos::Int)=ccall(("vtkfigAddScalarViewAt",libvtkfig), Cvoid, (Ptr{Cvoid},Ptr{Cvoid}, Cint,), this.cobj,fig.cobj,pos-1)
 
 add_figure(this::Frame, fig::GridView)=ccall(("vtkfigAddGridView",libvtkfig), Cvoid, (Ptr{Cvoid},Ptr{Cvoid}),this.cobj,fig.cobj)
+
 add_figure(this::Frame, fig::GridView, pos::Int)=ccall(("vtkfigAddGridViewAt",libvtkfig), Cvoid, (Ptr{Cvoid},Ptr{Cvoid}, Cint,), this.cobj,fig.cobj,pos-1)
 
 add_figure(this::Frame, fig::VectorView)=ccall(("vtkfigAddVectorView",libvtkfig), Cvoid, (Ptr{Cvoid},Ptr{Cvoid}),this.cobj,fig.cobj)
+
 add_figure(this::Frame, fig::VectorView, pos::Int)=ccall(("vtkfigAddVectorViewAt",libvtkfig), Cvoid, (Ptr{Cvoid},Ptr{Cvoid}, Cint,), this.cobj,fig.cobj,pos-1)
 
 add_figure(this::Frame, fig::XYPlot)=ccall(("vtkfigAddXYPlot",libvtkfig), Cvoid, (Ptr{Cvoid},Ptr{Cvoid}),this.cobj,fig.cobj)
+
 add_figure(this::Frame, fig::XYPlot, pos::Int)=ccall(("vtkfigAddXYPlotAt",libvtkfig), Cvoid, (Ptr{Cvoid},Ptr{Cvoid}, Cint,), this.cobj,fig.cobj,pos-1)
 
 remove_figure(this::Frame, fig::ScalarView)=ccall(("vtkfigRemoveScalarView",libvtkfig), Cvoid, (Ptr{Cvoid},Ptr{Cvoid}), this.cobj,fig.cobj)
+
 remove_figure(this::Frame, fig::GridView)=ccall(("vtkfigRemoveGridView",libvtkfig), Cvoid, (Ptr{Cvoid},Ptr{Cvoid}), this.cobj,fig.cobj)
+
 remove_figure(this::Frame, fig::VectorView)=ccall(("vtkfigRemoveVectorView",libvtkfig), Cvoid, (Ptr{Cvoid},Ptr{Cvoid}), this.cobj,fig.cobj)
+
 remove_figure(this::Frame, fig::XYPlot)=ccall(("vtkfigXYPlot",libvtkfig), Cvoid, (Ptr{Cvoid},Ptr{Cvoid}), this.cobj,fig.cobj)
 
 write_png(this::Frame,fname)=ccall(("vtkfigWritePNG",libvtkfig), Cvoid, (Ptr{Cvoid},Cstring,), this.cobj,fname)

@@ -1,17 +1,20 @@
-
+module Example0
 #########################################################################################
 using VTKFig
 
 
 
 ###########################################################################
+function G(x::T,y::T,t::T) where T 
+    return exp(-(x*x+y*y))*sin(t+9.0*x)*cos(11.0*y-2.0*t)
+end
 
 
-function main()
+function main(;nspin=500)
     h=0.01
     X=collect(0:h:1.0)
     Y=collect(0:h:1.2)
-    Z=zeros(length(X),length(Y))
+    Z=zeros(Float64,length(X),length(Y))
     
     frame=VTKFig.Frame()
     griddata=VTKFig.DataSet()
@@ -27,16 +30,12 @@ function main()
     plot=VTKFig.XYPlot()
     add_figure(frame,plot,2)
     
-    function G(x,y,t) 
-        return exp(-(x*x+y*y))*sin(t+x)*cos(y-t)
-    end
     
-    nspin=500
     ii=1
     t=0.0
     dt=0.1
     while ii<nspin
-        for i=1:length(X)
+        @time for i=1:length(X)
             for j=1:length(Y)
                 Z[i,j] = G(X[i],Y[j],t)
             end
@@ -44,7 +43,10 @@ function main()
         set_point_scalar(griddata,vec(Z),"V")
         clear(plot)
         set_plot_legend(plot,"j=1")
+        set_plot_color(plot,1,0,0)
         add_plot(plot,X,Z[:,1])
+
+        set_plot_color(plot,0,0,1)
         set_plot_legend(plot,"i=1")
         add_plot(plot,Y,Z[1,:])
 
@@ -54,13 +56,13 @@ function main()
     end
     write_png(frame,"test.png")
     write_vtk(griddata,"test.vtk")
-    VTKFig.interact(frame)
 end
 
 
 #VTKFig.test()
 #print_openglinfo()
-main()
+#main()
 
 
 
+end

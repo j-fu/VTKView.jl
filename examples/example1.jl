@@ -10,10 +10,10 @@ function G(x::T,y::T,t::T) where T
 end
 
 
-function main(;nspin=500)
+function main(;nspin=50)
 
     VTKFig.clear()
-    h=0.05
+    h=0.01
     X=collect(0:h:1.0)
     Y=collect(0:h:1.2)
     Z=zeros(Float64,length(X),length(Y))
@@ -59,9 +59,6 @@ function main(;nspin=500)
 end
 
 
-#VTKFig.test()
-#print_openglinfo()
-#main()
 
 
 

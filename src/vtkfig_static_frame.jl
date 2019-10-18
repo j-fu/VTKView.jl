@@ -1,24 +1,32 @@
+#
+# Alternative API based on a static frame "sitting" in the background which
+# persists during a julia session. Similar to the behavior of gr and pyplot.
+#
 
+# Variable holding static frame
+StaticFrame=nothing
 
-
-StaticFrame=0
-
+# Return static frame, and create it if it doesnt exist
 function static_frame()
     global StaticFrame
-    if StaticFrame==0
+    if StaticFrame==nothing
         StaticFrame=Frame()
     end
     return StaticFrame
 end
 
-function destroy_frame()
+# Destroy static frame - do we really need  this ?
+function destroy_static_frame()
     global StaticFrame
-    if StaticFrame!=0
+    if StaticFrame!=nothing
         destruct!(StaticFrame)
     end
-    StaticFrame=0
+    StaticFrame=nothing
 end
 
+#
+# Static frame  versions of vtkfig methods
+#
 
 interact()=interact(static_frame())
 
