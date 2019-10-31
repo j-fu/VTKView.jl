@@ -17,7 +17,7 @@ For detailed instructions, see  https://github.com/j-fu/vtkfig .
 """
 
 
-function checklib()
+function __init__()
     if VERSION >= v"1.1" 
         lib=something(Libdl.dlopen(libvtkfig,Libdl.RTLD_NOW, throw_error=true), C_NULL)
     else
@@ -28,8 +28,6 @@ function checklib()
         throw(LoadError("",0,""))
     end
 end
-
-checklib()
 
 ###########################################################################
 function print_openglinfo()

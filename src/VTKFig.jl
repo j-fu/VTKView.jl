@@ -10,13 +10,19 @@ include("vtkfig_static_frame.jl")
 
 
 
-set_rectilinear_grid(this::DataSet, X::Vector{Float64},Y::Vector{Float64})=ccall( ("vtkfigSetRectilinearGrid",libvtkfig), Cvoid,(Ptr{Cvoid},Ptr{Cdouble},Cint,Ptr{Cdouble},Cint), this.cobj,X, length(X),Y,length(Y))
+set_rectilinear_grid(this::DataSet, X::Vector{Float64},Y::Vector{Float64})=ccall( ("vtkfigSetRectilinearGrid2D",libvtkfig), Cvoid,(Ptr{Cvoid},Ptr{Cdouble},Cint,Ptr{Cdouble},Cint), this.cobj,X, length(X),Y,length(Y))
+
+set_rectilinear_grid(this::DataSet, X::Vector{Float64},Y::Vector{Float64},Z::Vector{Float64})=ccall( ("vtkfigSetRectilinearGrid3D",libvtkfig), Cvoid,(Ptr{Cvoid},Ptr{Cdouble},Cint,Ptr{Cdouble},Cint,Ptr{Cdouble},Cint), this.cobj,X,length(X),Y,length(Y),Z,length(Z))
 
 set_point_scalar(this::DataSet, X::Vector{Float64},name)=ccall(("vtkfigSetPointScalar",libvtkfig), Cvoid, (Ptr{Cvoid},Ptr{Cdouble},Cint,Cstring), this.cobj,X, length(X),name)
 
 write_vtk(this::DataSet,fname; ftype="A")=ccall( ("vtkfigWriteVTK",libvtkfig), Cvoid, (Ptr{Cvoid},Cstring,Cstring,), this.cobj,fname,ftype)
 
 set_data(this::ScalarView, dataset::DataSet,name)=ccall(("vtkfigSetData",libvtkfig),Cvoid, (Ptr{Cvoid},Ptr{Cvoid},Cstring),this.cobj,dataset.cobj,name)
+
+set_isolevels(this::ScalarView, V::Vector{Float64})=ccall(("vtkfigSetIsolevels",libvtkfig), Cvoid, (Ptr{Cvoid},Ptr{Cdouble},Cint), this.cobj,V, length(V))
+
+show_isosurfaces(this::ScalarView,b::Bool)=ccall(("vtkfigShowIsosurfaces",libvtkfig), Cvoid,(Ptr{Cvoid},Cint), this.cobj,Int(b))
 
 add_plot(this::XYPlot, X::Vector{Float64},Y::Vector{Float64})=ccall(("vtkfigAddPlot",libvtkfig), Cvoid,(Ptr{Cvoid},Ptr{Cdouble},Cint,Ptr{Cdouble},Cint), this.cobj,X, length(X),Y,length(Y))
     
@@ -81,6 +87,8 @@ export set_point_scalar
 export set_data
 export write_vtk
 
+export set_isolevels
+export show_isosurfaces
 
 export add_plot
 export set_title
