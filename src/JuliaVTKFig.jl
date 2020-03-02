@@ -1,4 +1,4 @@
-module VTKFig
+module JuliaVTKFig
 import Libdl
  
 include("vtkfig_capi.jl")
