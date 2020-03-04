@@ -1,4 +1,4 @@
-name = "VTKFig"
+name = "VTKView"
 uuid = "955f2c64-5fd0-11e9-0ad0-3332e913311a"
 authors = ["Juergen Fuhrmann <juergen.fuhrmann@wias-berlin.de>"]
 version = "0.1.0"

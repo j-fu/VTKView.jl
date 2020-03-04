@@ -1,11 +1,11 @@
-# JuliaVTKFig.jl: Julia adapter for vtkfig
+# VTKView.jl: VTK based visualization
 
 
 [vtkfig](https://github.com/j-fu/vtkfig) is a  C++ graphics library with an API that attempts to be as easy  to use as that  of python/matplotlib while being different.
 
 It is multithreaded and uses vtk for fast rendering.
 
-JuliaVTKFig.jl provides a Julia adapter based on ccall and the C API of 
+VTKView.jl provides a Julia adapter based on ccall and the C API of 
 vtkfig. 
 
 ## Disclaimer
@@ -25,7 +25,7 @@ So far, this package is in alpha state.
 4. Add this repository to your Julia environment by
 
 ````
-    Pkg.add("https://github.com/j-fu/JuliaVTKFig.jl")
+    Pkg.add("https://github.com/j-fu/VTKView.jl")
 ````
 
 5. Download an example and try.
