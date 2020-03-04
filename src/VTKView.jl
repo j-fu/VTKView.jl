@@ -1,4 +1,4 @@
-module JuliaVTKFig
+module VTKView
 import Libdl
  
 include("vtkfig_capi.jl")
@@ -6,49 +6,49 @@ include("vtkfig_capi.jl")
 include("vtkfig_static_frame.jl")
 
 
-
-export add_figure
-export remove_figure
+export interact
+export display
+export add!
+export clear!
+export remove!
 export write_png
 export write_vtk
 export start_video
 export stop_video
-export set_size
-export set_layout
-export set_window_title
-export set_frame_title
-export set_position
+export size!
+export layout!
+export windowtitle!
+export frametitle!
+export position!
 
-export set_rectilinear_grid
-export set_simplex_grid
-export set_point_scalar
-export set_data
+export rectilineargrid!
+export simplexgrid!
+export pointscalar!
+export data!
 export write_vtk
 
-export set_isolevels
-export show_isosurfaces
+export isolevels!
+export show_isosurfaces!
 
-export add_plot
-export set_title
-export show_legend
-export show_grid
-export adjust_labels
-export set_legend_position
-export set_legend_size
-export clear
-export set_plot_linetype
-export set_plot_markertype
-export set_plot_color
-export set_plot_legend
-export set_grid_color
-export set_axes_color
-export set_xtitle
-export set_ytitle
-export set_linewidth
-export set_markersize
-export set_xrange
-export set_yrange
-export set_number_of_xlabels
-export set_number_of_ylabels
+export title!
+export show_legend!
+export show_grid!
+export adjust_labels!
+export legendposition!
+export legendsize!
+export plotlinetype!
+export plotmarkertype!
+export plotcolor!
+export plotlegend!
+export gridcolor!
+export axescolor!
+export xtitle!
+export ytitle!
+export linewidth!
+export markersize!
+export xrange!
+export yrange!
+export numberofxlabels!
+export numberofylabels!
 
 end
