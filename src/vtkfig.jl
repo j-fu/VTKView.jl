@@ -16,9 +16,9 @@ For detailed instructions, see  https://github.com/j-fu/vtkfig .
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 """
 
+
 function __init__()
-    if @isdefined running_makedocs
-        println("running makedocs")
+    if ENV["MAKEDOCS"]=="1"
         return
     end
     if VERSION >= v"1.1" 

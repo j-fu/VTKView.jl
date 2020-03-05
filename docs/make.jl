@@ -1,7 +1,5 @@
 push!(LOAD_PATH,"../src/")
 
-running_makedocs=true
-
 using Documenter, VTKView, Literate
 
 
