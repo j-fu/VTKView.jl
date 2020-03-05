@@ -18,17 +18,14 @@ For detailed instructions, see  https://github.com/j-fu/vtkfig .
 
 
 function __init__()
-    if ENV["MAKEDOCS"]=="1"
-        return
-    end
     if VERSION >= v"1.1" 
-        lib=something(Libdl.dlopen(libvtkfig,Libdl.RTLD_NOW, throw_error=true), C_NULL)
+        lib=something(Libdl.dlopen(libvtkfig,Libdl.RTLD_NOW, throw_error=false), C_NULL)
     else
         lib=something(Libdl.dlopen_e(libvtkfig,Libdl.RTLD_NOW),C_NULL)
     end        
     if lib==C_NULL
         println(errorstring)
-        throw(LoadError("",0,""))
+        # throw(LoadError("",0,""))
     end
 end
 
