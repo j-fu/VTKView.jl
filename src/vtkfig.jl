@@ -16,8 +16,11 @@ For detailed instructions, see  https://github.com/j-fu/vtkfig .
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 """
 
-
 function __init__()
+    if @isdefined running_makedocs
+        println("running makedocs")
+        return
+    end
     if VERSION >= v"1.1" 
         lib=something(Libdl.dlopen(libvtkfig,Libdl.RTLD_NOW, throw_error=true), C_NULL)
     else

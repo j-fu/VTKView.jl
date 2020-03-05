@@ -1,3 +1,6 @@
+[![](https://img.shields.io/badge/docs-stable-blue.svg)](https://j-fu.github.io/VTKView.jl/stable)
+[![](https://img.shields.io/badge/docs-dev-blue.svg)](https://j-fu.github.io/VTKView.jl/dev)
+
 # VTKView.jl: VTK based visualization
 
 Some features:
