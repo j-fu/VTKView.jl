@@ -1,20 +1,20 @@
 module VTKView
 import Libdl
- 
-include("vtkfig_capi.jl")
+using DocStringExtensions
 
-include("vtkfig_static_frame.jl")
+include("vtkfig.jl")
+include("wrappers.jl")
 
 
 export interact
 export display
-export add!
+export addview!
 export clear!
 export remove!
-export write_png
-export write_vtk
-export start_video
-export stop_video
+export writepng
+export writevtk
+export startvideo
+export stopvideo
 export size!
 export layout!
 export windowtitle!
@@ -23,7 +23,7 @@ export position!
 
 export rectilineargrid!
 export simplexgrid!
-export pointscalar!
+export addpointscalar!
 export data!
 export write_vtk
 
@@ -33,6 +33,7 @@ export show_isosurfaces!
 export title!
 export show_legend!
 export show_grid!
+export addplot!
 export adjust_labels!
 export legendposition!
 export legendsize!

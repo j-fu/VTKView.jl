@@ -1,12 +1,16 @@
 # VTKView.jl: VTK based visualization
 
+Some features:
+- Fast visualization of
+  - 2D, 3D rectilinear and simplicial grids
+  - Piecewise linear functions on these grids
+  - 1D x-y plot data
+- Some keyboard and mouse based interaction in graphics window
+- Separate rendering thread
+- PNG+VTK output, video recording
 
-[vtkfig](https://github.com/j-fu/vtkfig) is a  C++ graphics library with an API that attempts to be as easy  to use as that  of python/matplotlib while being different.
 
-It is multithreaded and uses vtk for fast rendering.
-
-VTKView.jl provides a Julia adapter based on ccall and the C API of 
-vtkfig. 
+VTKView wraps [vtkfig](https://github.com/j-fu/vtkfig), a C++ graphics library with an API that attempts to be easy  to use from C/C++ simulation codes. It uses [vtk](https://vtk.org) for fast rendering of data. Based on ccall and the C API of vtkfig, VTKView makes this functionality available in Julia. 
 
 ## Disclaimer
 
@@ -22,13 +26,4 @@ So far, this package is in alpha state.
 
 3. Ensure that the directory containing `libvtkfig.so` (resp. `libvtkfig.a`) is on your `LD_LIBRARY_PATH`
 
-4. Add this repository to your Julia environment by
-
-````
-    Pkg.add("https://github.com/j-fu/VTKView.jl")
-````
-
-5. Download an example and try.
-
-
-
+4. Add this package to your Julia environment and try examples
