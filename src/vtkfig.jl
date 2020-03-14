@@ -1,6 +1,5 @@
 ###########################################################################
 
-const libvtkfig="libvtkfig.so"
 
 const errorstring=
 """
@@ -9,9 +8,9 @@ const errorstring=
 Package VTKView: Unable to open libvtkfig.so.
 
 Please ensure  to have  compiled the  vtkfig package  and to  have the
-directory containing libvtkfig.so on your LD_LIBRARY_PATH.
+environment variable LIBVTKFIG pointing to the library libvtkfig.so .
 
-For detailed instructions, see  https://github.com/j-fu/vtkfig .
+For detailed compilation instructions, see  https://github.com/j-fu/vtkfig .
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 """

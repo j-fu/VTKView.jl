@@ -8,8 +8,8 @@ Some features:
   - 2D, 3D rectilinear and simplicial grids
   - Piecewise linear functions on these grids
   - 1D x-y plot data
-- Some keyboard and mouse based interaction in graphics window
-- Separate rendering thread
+- Keyboard and mouse based interaction in graphics window
+- Rendering is performed in a separate thread
 - PNG+VTK output, video recording
 
 
@@ -17,16 +17,50 @@ VTKView wraps [vtkfig](https://github.com/j-fu/vtkfig), a C++ graphics library w
 
 ## Disclaimer
 
-So far, this package is in alpha state.
+So far, this package is in an early state.
 
-## Installation (Linux. MacOSX and the Win10 linux environment should be similar)
+## Installation 
 
-1. Install vtk and its development files on your system.
+### Installation via package manager (64 bit linux with libc only)
+
+1. Add another registry to the package manager (for finding  the jlls for vtk):  
+```
+pkg> registry add https://github.com/j-fu/JFURegistry.git
+```
+2. Install this package:
+```
+pkg> add VTKView
+```
+
+3. Run examples:
+```
+using VTKView
+VTKView.Examples.all()
+```
+
+### Manual installation  (Linux MacOSX and the Win10 linux environment should be similar)
+
+1. Install vtk 8.2 and its development files on your system.
    This can be done either via your system's package manager, or by downloading vtk and following the compilation instructions. Please ensure that all header files are installed as well. When configuring, care about
-   ensuring that graphics acceleration is enabled.
+   ensuring that graphics acceleration is enabled. See [here](https://github.com/j-fu/vtkfig/blob/master/doc/vtkminimal.md) for information on compiling a minimal subset for working with vtkfig.
 
 2. Download (clone) vtkfig and install it using the instructions of that package. 
 
-3. Ensure that the directory containing `libvtkfig.so` (resp. `libvtkfig.a`) is on your `LD_LIBRARY_PATH`
+3. Set the environment variable `LIBVTKFIG` such that it points to `libvtkfig.so`
 
-4. Add this package to your Julia environment and try examples
+4. Add this package to your Julia environment
+   `pkg> add VTKView`
+5. Run examples:
+```
+using VTKView
+VTKView.Examples.all()
+```
+
+## Other VTK related Julia resources
+
+- [WriteVTK.jl](https://github.com/jipolanco/WriteVTK.jl): Package allowing to write vtk files for later visualization with paraview.
+- [VTK.jl](https://github.com/timholy/VTK.jl): An early attempt to wrap the VTK API.  
+  Note that vtkfig, and thus VTKView work on top of the vtk API. In vtk speak, vtkfig just provides a couple of pre-defined vtk pipelines.
+- [VTKDataTypes.jl](https://github.com/mohamed82008/VTKDataTypes.jl): representing VTK data types and manipulating them in Julia.
+- [VTKDataIO.jl](https://github.com/mohamed82008/VTKDataIO.jl):  reading, writing and visualizing mesh data.  
+This package uses VTK through its python interface.

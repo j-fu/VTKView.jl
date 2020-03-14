@@ -2,8 +2,15 @@ module VTKView
 import Libdl
 using DocStringExtensions
 
+if haskey(ENV,"LIBVTKFIG")
+    const libvtkfig=ENV["LIBVTKFIG"]
+else
+    using vtkfig_jll
+end 
+
 include("vtkfig.jl")
 include("wrappers.jl")
+include("Examples/Examples.jl")
 
 
 export interact

@@ -1,3 +1,5 @@
+module Examples
+
 # ## Examples for vtkview
 
 # Load package
@@ -116,7 +118,8 @@ end
 # ### Plot scalar function on 3D rectangular grid
 function rectscalar3d(;n=50,tend=5)
     frame=VTKView.StaticFrame()
-    F(x,y,z,t)=sin((10+sin(t))*x-t)*cos(10y-t)*sin(3z-2t)
+    F(x,y,z,t,a)=exp(-10*((x-sin(a[1]*t))^2+(y-sin(a[2]*t))^2+(z-sin(a[3]*t))^2))
+    F(x,y,z,t)=F(x,y,z,t,(-1.0,1.0,1.0))+F(x,y,z,t,(1.0,-1.0,1.0))+F(x,y,z,t,(1.0,1.0,-1.0))
     X=collect(-1.0:1.0/n:1.0)
     N=length(X)
     V=[F(X[i],X[j],X[k],0) for i=1:N,j=1:N,k=1:N]
@@ -128,7 +131,7 @@ function rectscalar3d(;n=50,tend=5)
     addpointscalar!(dataset,vec(V),"V")
     data!(scalarview,dataset,"V")
     show_isosurfaces!(scalarview,true)
-    isolevels!(scalarview,[0.1,0.9])
+    isolevels!(scalarview,collect(0:0.25:1))
     addview!(frame,scalarview)
 
     for t in 0:0.1:tend
@@ -257,4 +260,5 @@ function all()
     simplexgrid3d()
     simplexscalar3d()
     multifig()
+end
 end
