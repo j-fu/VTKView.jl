@@ -21,16 +21,18 @@ So far, this package is in an early state.
 
 ## Installation 
 
-### Installation via package manager (64 bit linux with libc only)
+### Installation via package manager (64 bit linux with libc)
 
 1. Add another registry to the package manager (for finding  the jlls for vtk):  
 ```
-pkg> registry add https://github.com/j-fu/JFURegistry.git
+pkg> registry add https://github.com/j-fu/PackageNursery.git
 ```
-2. Install this package:
+2. Install this package:   
 ```
 pkg> add VTKView
 ```
+   You will have to choose between the version from the General registry and the one from the PackageNursery. Choose the later (with the UUID starting with `63b67fce`)
+
 
 3. Run examples:
 ```

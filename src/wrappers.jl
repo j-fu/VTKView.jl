@@ -14,6 +14,7 @@ function StaticFrame()
     global _static_frame
     if _static_frame==nothing
         _static_frame=Frame()
+        windowtitle!(_static_frame,"VTKView.jl")
     end
     return _static_frame
 end

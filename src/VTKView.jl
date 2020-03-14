@@ -4,6 +4,7 @@ using DocStringExtensions
 
 if haskey(ENV,"LIBVTKFIG")
     const libvtkfig=ENV["LIBVTKFIG"]
+    println("Using locally installed $(libvtkfig)")
 else
     using vtkfig_jll
 end 
@@ -30,7 +31,9 @@ export position!
 
 export rectilineargrid!
 export simplexgrid!
-export addpointscalar!
+export pointscalar!
+export pointvector!
+export quiver!
 export data!
 export write_vtk
 

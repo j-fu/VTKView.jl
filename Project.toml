@@ -1,14 +1,29 @@
 name = "VTKView"
+     
+                        
+
+# There seems  to be  a problem with  dependency management  when taking
+# package information form multiple registries,  so we use two different
+# UUIDs  here.  The plan  is  to  switch  to  the "General"  UUID  after
+# finalization of the initial development steps and to continue on General.
+
+# UUID of V0.1.0 registered on General (and v >=0.2.0)
 uuid = "955f2c64-5fd0-11e9-0ad0-3332e913311a"
+
+# UUID for development of v0.1.x on j-fu/PackageNursery
+# uuid = "63b67fce-66f7-11ea-1808-1361d8c55bf4"
+
 authors = ["Juergen Fuhrmann <juergen.fuhrmann@wias-berlin.de>"]
-version = "0.2.0"
+version = "0.1.1"
 
 [deps]
 DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
+ForwardDiff = "f6369f11-7733-5829-9624-2563aa707210"
 Libdl = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
 vtkfig_jll = "2bcdf5c0-6329-11ea-0b83-f5d1b57ecfa1"
 
 [compat]
 DocStringExtensions = "^0.8"
-vtkfig_jll = "0.22"
-julia = "1.3"
+ForwardDiff = "^0.10"
+julia = "^1.3"
+vtkfig_jll = "0.23"
