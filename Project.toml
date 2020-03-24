@@ -14,7 +14,7 @@ name = "VTKView"
 uuid = "63b67fce-66f7-11ea-1808-1361d8c55bf4"
 
 authors = ["Juergen Fuhrmann <juergen.fuhrmann@wias-berlin.de>"]
-version = "0.1.1"
+version = "0.1.2"
 
 [deps]
 DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
