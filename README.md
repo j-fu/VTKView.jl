@@ -65,4 +65,4 @@ VTKView.Examples.all()
   Note that vtkfig, and thus VTKView work on top of the vtk API. In vtk speak, vtkfig just provides a couple of pre-defined vtk pipelines.
 - [VTKDataTypes.jl](https://github.com/mohamed82008/VTKDataTypes.jl): representing VTK data types and manipulating them in Julia.
 - [VTKDataIO.jl](https://github.com/mohamed82008/VTKDataIO.jl):  reading, writing and visualizing mesh data.  
-This package uses VTK through its python interface.
+  This package uses VTK through its python interface.
