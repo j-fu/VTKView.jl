@@ -1,4 +1,3 @@
-[![](https://img.shields.io/badge/docs-stable-blue.svg)](https://j-fu.github.io/VTKView.jl/stable)
 [![](https://img.shields.io/badge/docs-dev-blue.svg)](https://j-fu.github.io/VTKView.jl/dev)
 
 # VTKView.jl: VTK based visualization
@@ -17,7 +16,8 @@ VTKView wraps [vtkfig](https://github.com/j-fu/vtkfig), a C++ graphics library w
 
 ## Disclaimer
 
-So far, this package is in an early state.
+So far, this package is in an early state. In particular, the relevant binary packages for MacOS and Windows are not yet available, and therefore they are registered with the general registry. During the early devlopment phase, these, and the current version  of the code
+are avilable via the registry https://github.com/j-fu/PackageNursery.git .
 
 ## Installation 
 
