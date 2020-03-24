@@ -25,7 +25,7 @@ are avilable via the registry https://github.com/j-fu/PackageNursery.git .
 
 1. Add another registry to the package manager (for finding  the jlls for vtk):  
 ```
-pkg> registry add https://github.com/j-fu/PackageNursery.git
+pkg> registry add https://github.com/j-fu/PackageNursery.jl.git
 ```
 2. Install this package:   
 ```
@@ -51,7 +51,8 @@ VTKView.Examples.all()
 3. Set the environment variable `LIBVTKFIG` such that it points to `libvtkfig.so`
 
 4. Add this package to your Julia environment
-   `pkg> add VTKView`
+`pkg> add VTKView`
+
 5. Run examples:
 ```
 using VTKView
