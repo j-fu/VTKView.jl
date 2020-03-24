@@ -2,6 +2,8 @@
 DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 Literate = "98b081ad-f1c9-55d3-8b20-4c87d4299306"
+Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
+VTKView= "63b67fce-66f7-11ea-1808-1361d8c55bf4"
 
 [compat]
 DocStringExtensions = "^0.8"
