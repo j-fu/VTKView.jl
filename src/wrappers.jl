@@ -21,14 +21,15 @@ end
 
 """
 $(SIGNATURES)
-Destroy static frame
+Unmap static frame
 """
-function destroy_static_frame()
+function unmap_static_frame()
     global _static_frame
     if _static_frame!=nothing
-        destruct!(_static_frame)
+        unmap!(_static_frame)
+        _static_frame=nothing
+        GC.gc()
     end
-    _static_frame=nothing
 end
 
 """

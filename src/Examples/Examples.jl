@@ -2,6 +2,7 @@ module Examples
 using DocStringExtensions
 using ForwardDiff
 using VTKView
+using Printf
 
 """
 $(SIGNATURES)
@@ -506,7 +507,7 @@ function multifig(;tend=5,n=50)
     writevtk(dataset,"multifig.vtk")
 end
 
-# ### Run all examples
+# ### Run all standard examples
 function all()
     rectgrid2d()
     rectscalar2d()
@@ -518,4 +519,67 @@ function all()
     simplexscalar3d()
     multifig()
 end
+
+
+# ### Examples with triangulate
+"""
+$(SIGNATURES)
+
+Use Triangulate.jl for creation of domain triangulation. 
+Pass the `Triangulate` module as the value of the keyword parameter
+"""
+function example_triangulate_domain(;Triangulate=nothing)
+    Triangulate==nothing && return
+
+    # generate grid
+    triin=Triangulate.TriangulateIO()
+    triin.pointlist=Matrix{Cdouble}([-1 -1; 0 -1; 0 0; 1 0; 1 1; -1 1]')
+    triin.segmentlist=Matrix{Cint}([1 2 ; 2 3 ; 3 4 ; 4 5 ; 5 6 ; 6 1 ]')
+    triin.segmentmarkerlist=Vector{Cint}([1, 2, 2, 1, 1, 1])
+    (triout, vorout)=Triangulate.triangulate("pALVa0.1", triin)
+    frame=VTKView.StaticFrame()
+    clear!(frame)
+    frametitle!(frame,"grid")
+    dataset=VTKView.DataSet()
+    VTKView.simplexgrid!(dataset,triout.pointlist,triout.trianglelist)
+    gridview=VTKView.GridView()
+    VTKView.data!(gridview,dataset)
+    VTKView.addview!(frame,gridview)
+    display(frame)
+    
+end
+
+
+
+"""
+$(SIGNATURES)
+
+Use Triangulate.jl for creation of domain triangulation with cell and boundary markers.
+Pass the `Triangulate` module as the value of the keyword parameter
+"""
+function example_triangulate_domain_regions(;Triangulate=nothing,minangle=20)
+    Triangulate==nothing && return
+
+    triin=Triangulate.TriangulateIO()
+    triin.pointlist=Matrix{Cdouble}([0.0 0.0 ;0.5 0.0; 1.0 0.0 ; 1.0  1.0 ; 0.6 0.6; 0.0 1.0]')
+    triin.segmentlist=Matrix{Cint}([1 2 ; 2 3 ;3 4 ; 4 5 ; 5 6 ; 6 1 ; 2 5]')
+    triin.segmentmarkerlist=Vector{Int32}([1, 2, 3, 4, 5, 6, 7])
+    triin.regionlist=Matrix{Cdouble}([0.2 0.8; 0.2 0.2; 1 2 ; 0.01 0.05])
+    angle=@sprintf("%.15f",minangle)
+    (triout, vorout)=Triangulate.triangulate("paAq$(angle)Q", triin)
+    frame=VTKView.StaticFrame()
+    clear!(frame)
+    dataset=VTKView.DataSet()
+    VTKView.simplexgrid!(dataset,triout.pointlist,triout.trianglelist)
+    VTKView.boundarygrid!(dataset,triout.segmentlist)
+    VTKView.boundarymarker!(dataset,triout.segmentmarkerlist)
+    VTKView.cellmarker!(dataset,vec(triout.triangleattributelist))
+    gridview=VTKView.GridView()
+    VTKView.data!(gridview,dataset)
+    VTKView.addview!(frame,gridview)
+    display(frame)
+end
+
+
+
 end

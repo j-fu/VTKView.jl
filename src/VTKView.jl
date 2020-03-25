@@ -13,7 +13,7 @@ include("vtkfig.jl")
 include("wrappers.jl")
 include("Examples/Examples.jl")
 
-
+export destroy!
 export interact
 export display
 export addview!

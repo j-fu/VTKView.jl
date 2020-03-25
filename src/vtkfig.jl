@@ -48,11 +48,11 @@ Create Frame (corresponds to desktop window).
 """
 function Frame(this::Frame)
     this.cobj=ccall( ("vtkfigCreateFrame",libvtkfig), Ptr{Cvoid}, ())
-    finalizer(destruct!,this)
+    finalizer(destroy!,this)
     return this
 end
 
-destruct!(this::Frame)=ccall( ("vtkfigDestroyFrame",libvtkfig), Cvoid, (Ptr{Cvoid},),this.cobj)
+destroy!(this::Frame)=ccall( ("vtkfigDestroyFrame",libvtkfig), Cvoid, (Ptr{Cvoid},),this.cobj)
 
 
 ###########################################################################
@@ -67,11 +67,11 @@ Create a data set.
 """
 function DataSet(this::DataSet)
     this.cobj=ccall( ("vtkfigCreateDataSet",libvtkfig), Ptr{Cvoid}, ())
-    finalizer(destruct!,this)
+    finalizer(destroy!,this)
     return this
 end
 
-destruct!(this::DataSet)=ccall( ("vtkfigDestroyDataSet",libvtkfig), Cvoid, (Ptr{Cvoid},),this.cobj)
+destroy!(this::DataSet)=ccall( ("vtkfigDestroyDataSet",libvtkfig), Cvoid, (Ptr{Cvoid},),this.cobj)
 
 
 ###########################################################################
@@ -86,10 +86,10 @@ Create a view for showing 2D or 3D scalar data.
 """
 function ScalarView(this::ScalarView)
     this.cobj=ccall( ("vtkfigCreateScalarView",libvtkfig), Ptr{Cvoid}, ())
-    finalizer(destruct!,this)
+    finalizer(destroy!,this)
     return this
 end
-destruct!(this::ScalarView)=ccall( ("vtkfigDestroyScalarView",libvtkfig), Cvoid, (Ptr{Cvoid},),this.cobj)
+destroy!(this::ScalarView)=ccall( ("vtkfigDestroyScalarView",libvtkfig), Cvoid, (Ptr{Cvoid},),this.cobj)
 
 
 ###########################################################################
@@ -104,10 +104,10 @@ Create a view for showing 2D or 3D grids.
 """
 function GridView(this::GridView)
     this.cobj=ccall( ("vtkfigCreateGridView",libvtkfig), Ptr{Cvoid}, ())
-    finalizer(destruct!,this)
+    finalizer(destroy!,this)
     return this
 end
-destruct!(this::GridView)=ccall( ("vtkfigDestroyGridView",libvtkfig), Cvoid, (Ptr{Cvoid},),this.cobj)
+destroy!(this::GridView)=ccall( ("vtkfigDestroyGridView",libvtkfig), Cvoid, (Ptr{Cvoid},),this.cobj)
 
 ###########################################################################
 mutable struct VectorView
@@ -121,10 +121,10 @@ Create a view for showing 2D or 3D vector data.
 """
 function VectorView(this::VectorView)
     this.cobj=ccall( ("vtkfigCreateVectorView",libvtkfig), Ptr{Cvoid}, ())
-    finalizer(destruct!,this)
+    finalizer(destroy!,this)
     return this
 end
-destruct!(this::VectorView)=ccall( ("vtkfigDestroyVectorView",libvtkfig), Cvoid, (Ptr{Cvoid},),this.cobj)
+destroy!(this::VectorView)=ccall( ("vtkfigDestroyVectorView",libvtkfig), Cvoid, (Ptr{Cvoid},),this.cobj)
 
 
 ###########################################################################
@@ -139,11 +139,11 @@ Create a view for showing X-Y plots.
 """
 function XYPlot(this::XYPlot)
     this.cobj=ccall( ("vtkfigCreateXYPlot",libvtkfig), Ptr{Cvoid}, ())
-    finalizer(destruct!,this)
+    finalizer(destroy!,this)
     return this
 end
 
-destruct!(this::XYPlot)=ccall( ("vtkfigDestroyXYPlot",libvtkfig), Cvoid, (Ptr{Cvoid},),this.cobj)
+destroy!(this::XYPlot)=ccall( ("vtkfigDestroyXYPlot",libvtkfig), Cvoid, (Ptr{Cvoid},),this.cobj)
 
 
 
@@ -167,6 +167,14 @@ $(TYPEDSIGNATURES)
 Clear frame content.
 """
 clear!(frame::Frame)=ccall(("vtkfigClearFrame",libvtkfig),Cvoid,(Ptr{Cvoid},),frame.cobj)
+
+
+
+"""
+$(TYPEDSIGNATURES)
+Unmap frame window
+"""
+unmap!(this::Frame)=ccall( ("vtkfigUnmapFrame",libvtkfig), Cvoid, (Ptr{Cvoid},),this.cobj)
 
 """
 $(TYPEDSIGNATURES)
@@ -307,7 +315,30 @@ rectilineargrid!(this::DataSet, X::Vector{Cdouble},Y::Vector{Cdouble},Z::Vector{
 $(TYPEDSIGNATURES)
 Create simplex grid in dataset.
 """
-simplexgrid!(this::DataSet, Points::Array{Cdouble,2},Cells::Array{Cint,2})=ccall( ("vtkfigSetSimplexGrid",libvtkfig), Cvoid,(Ptr{Cvoid},Cint,Ptr{Cdouble},Cint,Ptr{Cint},Cint), this.cobj,size(Points,1),Points,size(Points,2),Cells,size(Cells,2))
+function simplexgrid!(this::DataSet, Points::Array{Cdouble,2},Cells::Array{Cint,2})
+    return ccall( ("vtkfigSetSimplexGrid",libvtkfig), Cvoid,(Ptr{Cvoid},Cint,Cint,Ptr{Cdouble},Cint,Ptr{Cint},Cint), this.cobj,1,size(Points,1),Points,size(Points,2),Cells,size(Cells,2))
+end
+
+"""
+$(TYPEDSIGNATURES)
+Create simplex grid boundary consisting of codimension 1 cells in dataset 
+"""
+function boundarygrid!(this::DataSet, Cells::Array{Cint,2})
+    return ccall( ("vtkfigSetSimplexGridBoundaryCells",libvtkfig), Cvoid,(Ptr{Cvoid},Cint,Cint,Ptr{Cint},Cint), this.cobj,1,size(Cells,1),Cells,size(Cells,2))
+end
+
+"""
+$(TYPEDSIGNATURES)
+Add boundary cell region indicator
+"""
+boundarymarker!(this::DataSet, M::Vector{Cint})=ccall(("vtkfigSetBoundaryCellRegions",libvtkfig), Cvoid, (Ptr{Cvoid},Ptr{Cint},Cint), this.cobj,M, length(M))
+
+"""
+$(TYPEDSIGNATURES)
+Add boundary cell region indicator
+"""
+cellmarker!(this::DataSet, M::Vector)=ccall(("vtkfigSetCellRegions",libvtkfig), Cvoid, (Ptr{Cvoid},Ptr{Cint},Cint), this.cobj,convert(Vector{Cint},M), length(M))
+
 
 """
 $(TYPEDSIGNATURES)
@@ -521,5 +552,5 @@ end
 
 
 delaunay!(this::vtkfigSimplexGrid, inpoints::Array{Cdouble,2})=ccall(("vtkfigDelaunay",libvtkfig),Cvoid,
-                                                                     (Ref{vtkfigSimplexGrid},Ptr{Cdouble},Cint,Cint,),
-                                                                     Ref(this),inpoints,size(inpoints,1),size(inpoints,2))
+                                                                     (Ref{vtkfigSimplexGrid},Cint,Cint,Ptr{Cdouble},Cint,),
+                                                                     Ref(this),1,size(inpoints,1),inpoints,size(inpoints,2))
