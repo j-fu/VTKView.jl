@@ -17,11 +17,11 @@ VTKView wraps [vtkfig](https://github.com/j-fu/vtkfig), a C++ graphics library w
 ## Disclaimer
 
 So far, this package is in an early state. In particular, the relevant binary packages for MacOS and Windows are not yet available, and therefore they are registered with the general registry. During the early devlopment phase, these, and the current version  of the code
-are avilable via the registry https://github.com/j-fu/PackageNursery.git .
+are avilable via the registry https://github.com/j-fu/PackageNursery.git . The artifacts for Linux and FreeBSD are available, but vtk is not officially supported for FreeBSD and Linux with musl libc.
 
 ## Installation 
 
-### Installation via package manager (64 bit linux with libc)
+### Installation via package manager (Linux, FreeBSD)
 
 1. Add another registry to the package manager (for finding  the jlls for vtk):  
 ```
@@ -42,7 +42,7 @@ VTKView.Examples.all()
 
 ### Manual installation  (Linux MacOSX and the Win10 linux environment should be similar)
 
-1. Install vtk 8.2 and its development files on your system.
+1. Install vtk 8.2 or vtk 9.0.0 and the respective development files on your system.
    This can be done either via your system's package manager, or by downloading vtk and following the compilation instructions. Please ensure that all header files are installed as well. When configuring, care about
    ensuring that graphics acceleration is enabled. See [here](https://github.com/j-fu/vtkfig/blob/master/doc/vtkminimal.md) for information on compiling a minimal subset for working with vtkfig.
 
