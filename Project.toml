@@ -8,7 +8,6 @@ DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
 ForwardDiff = "f6369f11-7733-5829-9624-2563aa707210"
 Libdl = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
 Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
-VTKMinimal_jll = "529833da-d7f1-5821-aee9-3785d4589272"
 vtkfig_jll = "10287013-a584-5a38-a29a-42553acd0316"
 
 [compat]
