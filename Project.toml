@@ -1,7 +1,7 @@
 name = "VTKView"
 uuid = "955f2c64-5fd0-11e9-0ad0-3332e913311a"
 authors = ["Juergen Fuhrmann <juergen.fuhrmann@wias-berlin.de>"]
-version = "0.1.0"
+version = "0.2.0"
 
 [deps]
 DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
@@ -9,4 +9,4 @@ Libdl = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
 
 [compat]
 julia = "1"
-DocStringExtensions = "^0.8"
+DocStringExtensions = "0.8, 0.9"
