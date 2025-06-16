@@ -2,8 +2,5 @@
 DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 Literate = "98b081ad-f1c9-55d3-8b20-4c87d4299306"
+VTKView = "955f2c64-5fd0-11e9-0ad0-3332e913311a"
 
-[compat]
-DocStringExtensions = "^0.8"
-Documenter = "^0.22"
-Literate = "^2.3.0"
